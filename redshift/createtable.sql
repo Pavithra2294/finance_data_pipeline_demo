@@ -37,3 +37,13 @@ Optional: Optimize performance
 VACUUM financial_data.staging_transactions;
 ANALYZE financial_data.staging_transactions;
 
+
+
+------------------arn details:
+C:\Users\ashok\tf_demo>aws sts get-caller-identity --region eu-north-1
+{
+    "UserId": "AIDAVAHL63CWWMAET5NCV",
+    "Account": "344092235949",
+    "Arn": "arn:aws:iam::344092235949:user/pav-demo"
+}
+
