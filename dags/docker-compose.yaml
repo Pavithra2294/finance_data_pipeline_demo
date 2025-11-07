@@ -1,0 +1,11 @@
+version:  '3'
+services:
+  airflow:
+    image: apache/airflow:2.8.1
+    volumes:
+      - ./airflow:/opt/airflow
+      - C:/Users/ashok/OneDrive/Desktop/finance-data-project:/opt/airflow/data
+
+    ports:
+      - "8080:8080"
+    command: airflow standalone
