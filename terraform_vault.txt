@@ -1,0 +1,41 @@
+provider "aws" {
+  region = "eu-north-1"
+}
+
+provider "vault" {
+  address = "http://13.48.106.101:8200"
+  skip_child_token = true
+
+  auth_login {
+    path = "auth/approle/login"
+
+    parameters = {
+      role_id = "583af088-b7aa-8b52-b08a-7a2af37e98ae"
+      secret_id = "a24c0dd5-882b-bf90-3d87-94f66ea2d16e"
+    }
+  }
+}
+
+data "vault_kv_secret_v2" "example" {
+  mount = "kv" 
+  name  = "kvpath"
+}
+
+/*resource "aws_instance" "my_instance" {
+  ami           = "ami-0fa91bc90632c73c9"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "test"
+    Secret = data.vault_kv_secret_v2.example.data["name"]
+  }
+}*/
+
+
+resource "aws_s3_bucket" "source-data-bucket-pre-vault" {
+  bucket        = "source-data-bucket-pre-vault"
+ tags = {
+    Name = "test"
+    Secret = data.vault_kv_secret_v2.example.data["name"]
+  }
+}
