@@ -10,8 +10,8 @@ provider "vault" {
     path = "auth/approle/login"
 
     parameters = {
-      role_id = "583af088-b7aa-8b52-b08a-7a2af37e98ae"
-      secret_id = "a24c0dd5-882b-bf90-3d87-94f66ea2d16e"
+      role_id = "**"
+      secret_id = "**"
     }
   }
 }
@@ -38,4 +38,5 @@ resource "aws_s3_bucket" "source-data-bucket-pre-vault" {
     Name = "test"
     Secret = data.vault_kv_secret_v2.example.data["name"]
   }
+
 }
